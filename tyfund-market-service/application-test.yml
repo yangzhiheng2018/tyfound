@@ -2,7 +2,7 @@
 database:
   tyfund:
       read:
-        url: jdbc:mysql://10.100.14.54:3306/test_tyfund_market?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc1:mysql://10.100.14.54:3306/test_tyfund_market?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: tyfund_read
         password: 2FhYE9fIAFP1P#Tk
         #连接池的配置信息
