@@ -5,7 +5,7 @@ ufx:
   protocol: http
   oauth:
     grantType: client_credentials
-    clientType:
+    clientType:aa
     apiKey: 2fea9812-9df6-473d-b270-29c4852d168f
     apiSecret: 45e01565-209f-42ac-ae6e-5d985f4dbe37
     accessTokenUrl: https://sandbox.hscloud.cn/oauth2/oauth2/token
