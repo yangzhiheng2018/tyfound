@@ -79,6 +79,7 @@ spring:
         port: 5672
         username: adc
         password: 123
+        virtual-host: /tyfund_tmm
         listener:
           default-requeue-rejected: false
           retry:
