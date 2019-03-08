@@ -75,11 +75,10 @@ tyfund:
 #tmm事务配置
 spring:
     rabbitmq:
-        host: "localhost"
+        host: localhost
         port: 5672
         username: adc
         password: 123
-        virtual-host: "/tyfund_tmm"
         listener:
           default-requeue-rejected: false
           retry:
