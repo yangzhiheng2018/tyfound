@@ -77,7 +77,7 @@ spring:
     rabbitmq:
         host: "localhost"
         port: 5672
-        username: "guest"
+        username: "yzh"
         password: "123456"
         virtual-host: "/tyfund_tmm"
         listener:
