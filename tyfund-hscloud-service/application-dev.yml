@@ -60,7 +60,7 @@ tyfund:
     enabled: true
   exchange:
     monitor: tyfund_exchange_monitor_test
-    trade: tyfund_exchange_trade_test
+    trade: tyfund_exchange_trade_test123
   queue:        
     allot_req: tyfund_queue_allot_req_test
     redeem_req: tyfund_queue_redeem_req_test
