@@ -1,0 +1,56 @@
+#tmm事务配置
+spring:
+    rabbitmq:
+        host: "10.100.11.73"
+        port: 5672
+        username: "tyfund"
+        password: "tyfund"
+        virtual-host: "/tyfund_tmm"
+        listener:
+          default-requeue-rejected: false
+          retry:
+            enabled: true
+            initial-interval: 2000
+            max-attempts: 3
+            multiplier: 2
+            max-interval: 5000
+        tmm.producer.enabled: true
+    tmmService:
+       rpcPath: /data/tmm/tyfund-web
+       batch:
+         size: 2000
+       check:
+         interval:
+           time: 10000
+       monitor:
+         interval:
+           time: 10000
+
+################# 非关系型数据库配置 #################
+nosql:
+  redis:
+    tyfund:
+      database: 6
+      password: test
+      sentinel:
+        master: my_master
+        nodes: 'node.td-k8s.com:22379'
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+
+#性能日志配置
+app.performance.log.ignore.urlParams: /user/**,/reset_password/**
+
+# URL鉴权
+auth:
+  urls:
+    urlPatterns: /user/**
+
+tyfund:
+    monitor:
+       enabled: true
+    exchange:
+       monitor: tyfund_exchange_monitor_test
