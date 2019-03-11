@@ -1,0 +1,167 @@
+################# 数据库配置 #################
+database:
+  tyfund:
+      read:
+        url: jdbc:mysql://10.100.14.54:3306/test_tyfund_order?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: tyfund_read
+        password: 2FhYE9fIAFP1P#Tk
+        #连接池的配置信息
+        initialSize: 10
+        minIdle: 10
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+      write:
+        url: jdbc:mysql://10.100.14.54:3306/test_tyfund_order?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: tyfund_write
+        password: 2FhYE9fIAFP1P#Tk
+        #连接池的配置信息
+        initialSize: 10
+        minIdle: 10
+        maxActive: 100
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+################# druid数据源 #################
+druid:
+  pool:
+    initialSize: 10
+    maxActive: 100
+    minIdle: 10
+################# 非关系型数据库配置 #################
+nosql:
+  redis:
+    tyfund:
+      database: 8
+      password: test
+      sentinel:
+        master: my_master
+        nodes: 'node.td-k8s.com:22379'
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+
+hystrix:
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 12000
+  threadpool.default.coreSize: 20
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+
+################# mybatis配置 #################
+mybatis:
+  configuration:
+    map-underscore-to-camelCase: true
+  mapper-locations: "classpath*:mappers/**/*.xml"
+
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.tuaidai.funds.model.entity
+  global-config:
+    id-type: 3
+    field-strategy: 2
+    auto-set-db-type: true
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+# Discovery Server Access
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registryFetchIntervalSeconds: 10
+    instanceInfoReplicationIntervalSeconds: 10
+    initialInstanceInfoReplicationIntervalSeconds: 20
+    registerWithEureka: true
+    fetchRegistry: true
+    
+#tmm事务配置
+spring:
+    rabbitmq:
+        host: "10.100.11.73"
+        port: 5672
+        username: "tyfund"
+        password: "tyfund"
+        virtual-host: "/tyfund_tmm"
+        listener:
+          default-requeue-rejected: false
+          retry:
+            enabled: true
+            initial-interval: 1000
+            max-attempts: 3
+            multiplier: 2
+            max-interval: 5000
+        tmm.producer.enabled: true
+    tmmService:
+       rpcPath: /data/tmm/tyfund-order-service
+       batch:
+         size: 2000
+       check:
+         interval:
+           time: 10000
+       monitor:
+         interval:
+           time: 10000
+           
+##xxl-job配置
+xxl:
+  job:
+    admin:
+      addresses: http://10.100.11.195:9107
+    executor:
+      appname: tyfund-order-api
+      ip:
+      port: 22222
+      logpath: /data/logs/tyfund-order-api/jobhandler
+    accessToken:
+
+#TMM区分环境配置交换机名称和路由key
+tyfund:
+  exchange:
+    monitor: tyfund_exchange_monitor_test
+    trade: tyfund_exchange_trade_test
+    login: tyfund_exchange_login_test
+  queue: 
+    allot_req: tyfund_queue_allot_req_test
+    redeem_req: tyfund_queue_redeem_req_test
+    allot_resp: tyfund_queue_allot_resp_test
+    redeem_resp: tyfund_queue_redeem_resp_test
+    login: tyfund_queue_login_test
+  route:
+    allot_req: tyfund_route_allot_req_test
+    redeem_req: tyfund_route_redeem_req_test
+    allot_resp: tyfund_route_allot_resp_test
+    redeem_resp: tyfund_route_redeem_resp_test
+    login: tyfund_route_login_test
