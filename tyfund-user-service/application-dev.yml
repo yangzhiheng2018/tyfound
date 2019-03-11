@@ -2,9 +2,9 @@
 database:
   tyfund:
       read:
-        url: jdbc:mysql://10.100.14.54:3306/test_tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-        username: tyfund_read
-        password: 2FhYE9fIAFP1P#Tk
+        url: jdbc:mysql://10.100.14.54:3306/tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: abc123456@@..
         #连接池的配置信息
         initialSize: 10
         minIdle: 10
@@ -21,9 +21,9 @@ database:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
       write:
-        url: jdbc:mysql://10.100.14.54:3306/test_tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-        username: tyfund_write
-        password: 2FhYE9fIAFP1P#Tk
+        url: jdbc:mysql://10.100.14.54:3306/tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: abc123456@@..
         #连接池的配置信息
         initialSize: 10
         minIdle: 10
@@ -135,10 +135,10 @@ sms-service:
 #tmm事务配置
 spring:
     rabbitmq:
-        host: "10.100.11.73"
+        host: localhost
         port: 5672
-        username: "tyfund"
-        password: "tyfund"
+        username: adc
+        password: 123
         virtual-host: "/tyfund_tmm"
         listener:
           default-requeue-rejected: false
