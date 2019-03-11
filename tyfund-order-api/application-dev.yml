@@ -1,0 +1,97 @@
+# Discovery Server Access
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registryFetchIntervalSeconds: 10
+    instanceInfoReplicationIntervalSeconds: 10
+    initialInstanceInfoReplicationIntervalSeconds: 20
+    registerWithEureka: true
+    fetchRegistry: true
+
+hystrix:
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 8000
+  threadpool.default.coreSize: 20
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+
+tyfund:
+  datum:
+    url: http://10.100.14.40:58011
+  monitor:
+    enabled: true
+  exchange:
+    monitor: tyfund_exchange_monitor_test
+    login: tyfund_exchange_login_test
+  route:
+    login: tyfund_route_login_test
+  queue: 
+    login: tyfund_queue_login_test
+    
+#tmm事务配置
+spring:
+    rabbitmq:
+        host: "10.100.11.73"
+        port: 5672
+        username: "tyfund"
+        password: "tyfund"
+        virtual-host: "/tyfund_tmm"
+        listener:
+          default-requeue-rejected: false
+          retry:
+            enabled: true
+            initial-interval: 2000
+            max-attempts: 3
+            multiplier: 2
+            max-interval: 5000
+        tmm.producer.enabled: true
+    tmmService:
+       rpcPath: /data/tmm/tyfund-order-api
+       batch:
+         size: 2000
+       check:
+         interval:
+           time: 10000
+       monitor:
+         interval:
+           time: 10000
+
+################# 非关系型数据库配置 #################
+nosql:
+  redis:
+    tyfund:
+      database: 8
+      password: test
+      sentinel:
+        master: my_master
+        nodes: 'node.td-k8s.com:22379'
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+        
+##xxl-job配置
+xxl:
+  job:
+    admin:
+      addresses: http://10.100.11.195:9107
+    executor:
+      appname: tyfund-order-api
+      ip:
+      port: 11111
+      logpath: /data/logs/tyfund-order-api/jobhandler
+    accessToken:
+    
+##性能日志配置
+app.performance.log.ignore.urlParams: "**/order/**,**/user/**,**/hscloud/**"
