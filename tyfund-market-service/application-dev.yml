@@ -131,7 +131,7 @@ logging:
 xxl:
   job:
     admin:
-      addresses: http://10.100.11.195:9107
+      addresses: http://localhost:9107
     executor:
       appname: tyfund-market-service
       ip:
