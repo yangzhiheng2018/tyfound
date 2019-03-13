@@ -134,7 +134,7 @@ xxl:
       addresses: http://127.0.0.1:9107
     executor:
       appname: tyfund-market-service
-      ip: 127.0.0.1
+      ip:
       port: 9999
       logpath: /data/logs/tyfund-market-service/jobhandler
     accessToken:
