@@ -160,18 +160,6 @@ spring:
          interval:
            time: 10000
 
-##xxl-job配置
-xxl:
-  job:
-    admin:
-      addresses: http://10.100.11.195:9107
-    executor:
-      appname: tyfund-user-service
-      ip:
-      port: 33333
-      logpath: /data/logs/tyfund-user-service/jobhandler
-    accessToken:
-
 #性能日志配置
 app.performance.log.ignore.urlParams: /user/**,/smsLog/**,/sms/**
 
