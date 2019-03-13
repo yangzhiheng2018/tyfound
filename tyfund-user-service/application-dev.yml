@@ -2,7 +2,7 @@
 database:
   tyfund:
       read:
-        url: jdbc:mysql://10.100.14.54:3306/tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://192.168.51.121:3306/tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
         password: abc123456@@..
         #连接池的配置信息
@@ -21,7 +21,7 @@ database:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
       write:
-        url: jdbc:mysql://10.100.14.54:3306/tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://192.168.51.121:3306/tyfund_user?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
         password: abc123456@@..
         #连接池的配置信息
@@ -164,7 +164,7 @@ spring:
 xxl:
   job:
     admin:
-      addresses: http://10.100.11.195:9107
+      addresses: http://localhost:9898
     executor:
       appname: tyfund-user-service
       ip:
