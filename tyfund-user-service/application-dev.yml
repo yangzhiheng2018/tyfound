@@ -164,11 +164,11 @@ spring:
 xxl:
   job:
     admin:
-      addresses: http://127.0.0.1:8080/xxl-job-admin
+      addresses: http://10.100.11.195:9107
     executor:
       appname: tyfund-user-service
       ip:
-      port: 0
+      port: 33333
       logpath: /data/logs/tyfund-user-service/jobhandler
     accessToken:
 
