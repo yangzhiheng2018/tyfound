@@ -167,7 +167,7 @@ xxl:
       addresses: http://localhost:9898
     executor:
       appname: tyfund-user-service
-      ip: localhost
+      ip:
       port: 33333
       logpath: /data/logs/tyfund-user-service/jobhandler
     accessToken:
