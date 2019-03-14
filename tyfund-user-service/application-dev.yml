@@ -52,8 +52,8 @@ nosql:
       database: 8
       password: gxja@2019
       sentinel:
-        master: master
-        nodes: '192.168.51.22:26379'
+        master: mymaster
+        nodes: '192.168.51.21:26379'
       pool:
         max-active: 8
         max-idle: 8
