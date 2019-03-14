@@ -50,7 +50,7 @@ nosql:
   redis:
     tyfund:
       database: 8
-      password: test
+      password: gxja@2019
       sentinel:
         master: master
         nodes: '192.168.51.21:26379,192.168.51.22:26379,192.168.51.23:26379'
